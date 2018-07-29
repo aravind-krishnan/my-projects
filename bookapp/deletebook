@@ -1,0 +1,26 @@
+var fs = require('fs');
+var express = require('express');
+var app = express.Router();
+var bodyParser = require('body-parser');
+var urlencodeparser=bodyParser.urlencoded({ extended : false });
+
+
+app.post('/deletebook',urlencodeparser,function(req,res){
+res.json({"message":"enter the book id for deleting"});
+var bid = req.body.id;
+
+
+
+
+
+
+fs.writeFile('book.json',bookdetails,function(err){
+if(err){
+return console.error(err);}
+});
+ 
+res.json({"message":"written book information intoo file"});
+});
+
+
+module.exports = app;

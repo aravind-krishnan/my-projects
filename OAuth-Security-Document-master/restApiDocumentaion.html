@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+header {
+    width: 100%;
+    height: 60px;
+    background: red;
+    position: fixed;
+    top: 0;
+}
+
+footer {
+    width: 100%;
+    height: 60px;
+    background: red;
+    position: fixed;
+    bottom: 0;
+}
+</style>
+</head>
+<body>
+<header><h2>Rest API Document</h2></header>
+<div class="table-responsive">
+<table class="table table-hover">
+  <tr class="active">
+    <th>URL</th>
+    <th>Method</th>
+    <th>URL Params</th>
+    <th>Data Params</th>
+    <th>Header</th>
+    <th>Success Response</th>
+    <th>Error Response</th>
+    <th>Sample Call</th>
+    <th>Description</th>
+  </tr>
+    <tr  class="success">
+    <td>/register</td>
+    <td>POST</td>
+    <td>None</td>
+    <td>{"Username":"",emailId:"",Password":""}</td>
+    <td>None</td>
+    <td>Code: 200 Contents: { auth: true, token: token }</td>
+    <td>Code: 500 Content: { error : "There was a problem registering the user." }</td>
+    <td>
+    $.ajax({
+    url: "/register",
+    data:{"Username":"",emailId:"",Password":""},
+    dataType: "json",
+    type : "POST",
+    success : function(r) {
+      console.log(r);
+    }
+  })
+    </td>
+    <td>Registering the User. So a token will be sent to the user in the response.</td>
+  </tr>
+  <tr  class="danger">
+    <td>/login</td>
+    <td>POST</td>
+    <td>None</td>
+    <td>{"Username":"",Password":""}</td>
+    <td>{token:""}</td>
+    <td>Code: 200 Contents</td>
+    <td>Code: 401 Content: { error : "Username or password incorrect" }</td>
+    <td>
+    $.ajax({
+    url: "/login",
+    data:{Username":"","Password":""},
+    dataType: "json",
+    type : "POST",
+    success : function(r) {
+      console.log(r);
+    }
+  })
+    </td>
+    <td>While the login button is clicked.The request goes to the server and the token in the header will be verified</td>
+  </tr>
+  <tr class="info">
+    <td>/contents</td>
+    <td>GET</td>
+    <td>None</td>
+    <td>NONE</td>
+    <td>None</td>
+    <td>Code: 200 Content: {CourseName:"",CourseId:"",TopicNames:"", TopicIds:"", "contentdurations:""}</td>
+    <td>Code: 204 Content: { error : "No content available" }</td>
+    <td>
+    $.ajax({
+    url: "/contents",
+    dataType: "json",
+    type : "GET",
+    success : function(r) {
+      console.log(r);
+    }
+  })
+    </td>
+    <td>Getting the contents on the landing page.</td>
+  </tr>
+  <tr class="warning">
+   <td>/course/topic</td>
+    <td>POST</td>
+    <td>{Courseid:"",CourseName:"",topicid:"",topicname:""}</td>
+    <td>NONE</td>
+    <td>None</td>
+    <td>Code: 200 Content:{authorname:"", authordescription"",vidioname:"", vidioPath:""}</td>
+    <td>Code: 204 Content: { error : "No topic available" }</td>
+    <td>
+    $.ajax({
+    url: "//Course/topic",
+    dataType: "json",
+    type : "POST",
+    success : function(r) {
+      console.log(r);
+    }
+  })
+    </td>
+    <td>When the particular topic from particular Course will be clicked the vidios corresponding to that Course and topic will be returned</td>
+  </tr>
+</table>
+</div>
+</body>
+<footer>
+	<b> CopyRight at Zenrays</b>
+</footer>
+</html>
